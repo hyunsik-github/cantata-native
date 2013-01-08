@@ -19,7 +19,7 @@ cantataMainForm::~cantataMainForm(void)
 bool
 cantataMainForm::Initialize(void)
 {
-	Construct(L"IDF_FORM");
+	Construct(L"PhotoStoryList");
 
 	return true;
 }
@@ -36,13 +36,20 @@ cantataMainForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	Tizen::Ui::Controls::Button *pButtonOk = static_cast<Button*>(GetControl(L"IDC_BUTTON_OK"));
-	if (pButtonOk != null)
-	{
-		pButtonOk->SetActionId(ID_BUTTON_OK);
-		pButtonOk->AddActionEventListener(*this);
-	}
+//	Tizen::Ui::Controls::Button *pButtonOk = static_cast<Button*>(GetControl(L"IDC_BUTTON_OK"));
+//	if (pButtonOk != null)
+//	{
+//		pButtonOk->SetActionId(ID_BUTTON_OK);
+//		pButtonOk->AddActionEventListener(*this);
+//	}
 
+	Button *pBtnadd = static_cast<Button *>(GetControl("btnAdd"));  
+	if(pBtnadd)
+	{
+		pBtnadd->SetActionId(201);
+		pBtnadd->AddActionEventListener(*this);
+		pBtnadd->AddTouchEventListener(*this);
+	}
 	return r;
 }
 
@@ -61,28 +68,27 @@ cantataMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionI
 {
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
-
 	switch(actionId)
 	{
-	case ID_BUTTON_OK: {
-		AppLog("OK Button is clicked!");
-		String appName = App::GetInstance()->GetAppRootPath() + App::GetInstance()->GetAppName();
-		String resPath = App::GetInstance()->GetAppResourcePath();
-		const wchar_t *pAppPath = (const wchar_t*)appName.GetPointer();
-		const wchar_t *pResPath = (const wchar_t*)resPath.GetPointer();
-		char app_path[512];
-		char res_path[512];
-		char js_path[512];
-		char node_path[512];
-		char command[512];
-
-		wcstombs(app_path, pAppPath, appName.GetLength()+1);
-		wcstombs(res_path, pResPath, resPath.GetLength()+1);
-		sprintf(node_path, "%s%s", res_path,"node");
-		sprintf(js_path, "%s%s", res_path,"app.js");
-
-		sprintf(command, "%s %s", node_path, js_path);
-		system(command);
+	case ID_BUTTON_ADD: {
+//		AppLog("OK Button is clicked!");
+//		String appName = App::GetInstance()->GetAppRootPath() + App::GetInstance()->GetAppName();
+//		String resPath = App::GetInstance()->GetAppResourcePath();
+//		const wchar_t *pAppPath = (const wchar_t*)appName.GetPointer();
+//		const wchar_t *pResPath = (const wchar_t*)resPath.GetPointer();
+//		char app_path[512];
+//		char res_path[512];
+//		char js_path[512];
+//		char node_path[512];
+//		char command[512];
+//
+//		wcstombs(app_path, pAppPath, appName.GetLength()+1);
+//		wcstombs(res_path, pResPath, resPath.GetLength()+1);
+//		sprintf(node_path, "%s%s", res_path,"node");
+//		sprintf(js_path, "%s%s", res_path,"app.js");
+//
+//		sprintf(command, "%s %s", node_path, js_path);
+//		system(command);
 
 		break;
 	}
@@ -118,3 +124,52 @@ cantataMainForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSce
 	AppLog("OnSceneDeactivated");
 }
 
+
+void
+cantataMainForm::OnTouchDoublePressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+{
+	// TODO: Add your implementation codes here
+
+}
+
+void
+cantataMainForm::OnTouchFocusIn(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+{
+	// TODO: Add your implementation codes here
+
+}
+
+void
+cantataMainForm::OnTouchFocusOut(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+{
+	// TODO: Add your implementation codes here
+
+}
+
+void
+cantataMainForm::OnTouchLongPressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+{
+	// TODO: Add your implementation codes here
+
+}
+
+void
+cantataMainForm::OnTouchMoved(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+{
+	// TODO: Add your implementation codes here
+
+}
+
+void
+cantataMainForm::OnTouchPressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+{
+	// TODO: Add your implementation codes here
+
+}
+
+void
+cantataMainForm::OnTouchReleased(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+{
+	// TODO: Add your implementation codes here
+
+}
