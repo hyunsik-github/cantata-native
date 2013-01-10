@@ -1,5 +1,6 @@
 #include <FApp.h>
 #include "cantataMainForm.h"
+#include "ResourceAfx.h"
 #include <stdlib.h>
 
 using namespace Tizen::Base;
@@ -19,8 +20,8 @@ cantataMainForm::~cantataMainForm(void)
 bool
 cantataMainForm::Initialize(void)
 {
-	Construct(L"PhotoStoryList");
-
+	Construct(L"CANTATAMAIN_FORM");
+	AppLogTag("cantataMainForm", "cantataMainForm::Initialize");
 	return true;
 }
 
@@ -36,20 +37,21 @@ cantataMainForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-//	Tizen::Ui::Controls::Button *pButtonOk = static_cast<Button*>(GetControl(L"IDC_BUTTON_OK"));
-//	if (pButtonOk != null)
-//	{
-//		pButtonOk->SetActionId(ID_BUTTON_OK);
-//		pButtonOk->AddActionEventListener(*this);
-//	}
-
-	Button *pBtnadd = static_cast<Button *>(GetControl("btnAdd"));  
-	if(pBtnadd)
+	Tizen::Ui::Controls::Button *pButtonOk = static_cast<Button*>(GetControl(IDC_BUTTON_OK));
+	if (pButtonOk != null)
 	{
-		pBtnadd->SetActionId(201);
-		pBtnadd->AddActionEventListener(*this);
-		pBtnadd->AddTouchEventListener(*this);
+		pButtonOk->SetActionId(ID_BUTTON_OK);
+		pButtonOk->AddActionEventListener(*this);
+		pButtonOk->AddTouchEventListener(*this);
 	}
+
+//	Button *pBtnadd = static_cast<Button *>(GetControl(IDC_BUTTON_ADD));
+//	if(pBtnadd)
+//	{
+//		pBtnadd->SetActionId(ID_BUTTON_ADD);
+//		pBtnadd->AddActionEventListener(*this);
+//		pBtnadd->AddTouchEventListener(*this);
+//	}
 	return r;
 }
 
@@ -70,8 +72,10 @@ cantataMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionI
 	AppAssert(pSceneManager);
 	switch(actionId)
 	{
-	case ID_BUTTON_ADD: {
-//		AppLog("OK Button is clicked!");
+	case ID_BUTTON_OK: {
+		AppLogTag("cantata", "Open PhotoStoryList");
+		pSceneManager->GoForward(ForwardSceneTransition(IDL_PhotoStoryList));
+		pSceneManager->GoForward(ForwardSceneTransition(IDL_PhotoStoryList, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
 //		String appName = App::GetInstance()->GetAppRootPath() + App::GetInstance()->GetAppName();
 //		String resPath = App::GetInstance()->GetAppResourcePath();
 //		const wchar_t *pAppPath = (const wchar_t*)appName.GetPointer();

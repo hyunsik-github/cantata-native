@@ -10,6 +10,7 @@
 #include "cantataFrame.h"
 #include "cantataFormFactory.h"
 #include "cantataPanelFactory.h"
+#include "ResourceAfx.h"
 
 using namespace Tizen::App;
 using namespace Tizen::Base;
@@ -17,6 +18,9 @@ using namespace Tizen::System;
 using namespace Tizen::Ui;
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
+
+const wchar_t* SCENE_NEWPHOTOSTORY_FORM = L"Scene_NewPhotoStoryForm";
+const wchar_t* SCENE_PHOTOSTORYLIST_FORM = L"Scene_PhotoStoryListForm";
 
 
 cantataApp::cantataApp(void)
@@ -71,6 +75,8 @@ cantataApp::OnAppInitialized(void)
 	pSceneManager->RegisterFormFactory(formFactory);
 	pSceneManager->RegisterPanelFactory(panelFactory);
 	pSceneManager->RegisterScene(L"MainScene", L"MainForm", L"");
+	pSceneManager->RegisterScene(SCENE_NEWPHOTOSTORY_FORM, IDL_NewPhotoStory, L"");
+	pSceneManager->RegisterScene(SCENE_PHOTOSTORYLIST_FORM, IDL_PhotoStoryList, L"");
 
 	// Goto the scene.
 	if (pSceneManager->GoForward(ForwardSceneTransition(L"MainScene")) != E_SUCCESS)
