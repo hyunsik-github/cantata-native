@@ -1,13 +1,16 @@
 #include "cantataFormFactory.h"
 #include "cantataMainForm.h"
-#include "NewPhotoStory.h"
-#include "PhotoStoryList.h"
+#include "photoStoryMainForm.h"
+#include "photoStoryNewForm.h"
 #include "ResourceAfx.h"
 
 using namespace Tizen::Ui::Scenes;
 
-const wchar_t* FORM_NEWPHOTOSTORY = L"Form_NewPhotoStory";
-const wchar_t* FORM_PHOTOSTORYLIST = L"Form_PhotoStoryList";
+const wchar_t* FORM_CANTATA = L"Form_Cantata";
+
+const wchar_t* FORM_PHOTOSTORY_MAIN = L"Form_PhotoStory_Main";
+const wchar_t* FORM_PHOTOSTORY_NEW = L"Form_PhotoStory_New";
+
 
 cantataFormFactory::cantataFormFactory(void)
 {
@@ -24,26 +27,26 @@ cantataFormFactory::CreateFormN(const Tizen::Base::String& formId, const Tizen::
 	AppAssert(pSceneManager);
 	Tizen::Ui::Controls::Form* pNewForm = null;
 
-	if (formId == L"MainForm")
+	if (formId == FORM_CANTATA)
 	{
 		cantataMainForm* pForm = new cantataMainForm();
 		pForm->Initialize();
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pNewForm = pForm;
 	}
-	if (formId == IDL_PhotoStoryList)
+	if (formId == FORM_PHOTOSTORY_MAIN)
 	{
-		PhotoStoryList* pPhotoStoryList = new PhotoStoryList();
-		pPhotoStoryList->Initialize();
-//		pSceneManager->AddSceneEventListener(sceneId, *pPhotoStoryList);
-		pNewForm = pPhotoStoryList;
+		photoStoryMainForm* pFormPhotoStoryMain = new photoStoryMainForm();
+		pFormPhotoStoryMain->Initialize();
+//		pSceneManager->AddSceneEventListener(sceneId, *pFormPhotoStoryMain);
+		pNewForm = pFormPhotoStoryMain;
 	}
-	if (formId == IDL_NewPhotoStory)
+	if (formId == FORM_PHOTOSTORY_NEW)
 	{
-		NewPhotoStory* pNewPhotoStory = new NewPhotoStory();
-		pNewPhotoStory->Initialize();
-//		pSceneManager->AddSceneEventListener(sceneId, *pNewPhotoStory);
-		pNewForm = pNewPhotoStory;
+		photoStoryNewForm* pFormPhotoStoryNew = new photoStoryNewForm();
+		pFormPhotoStoryNew->Initialize();
+//		pSceneManager->AddSceneEventListener(sceneId, *pFormPhotoStoryNew);
+		pNewForm = pFormPhotoStoryNew;
 	}
 	// TODO:
 	// Add your form creation code here

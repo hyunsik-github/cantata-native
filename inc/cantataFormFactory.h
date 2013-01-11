@@ -3,8 +3,9 @@
 
 #include <FUi.h>
 
-extern const wchar_t* FORM_NEWPHOTOSTORY;
-extern const wchar_t* FORM_PHOTOSTORYLIST;
+extern const wchar_t* FORM_CANTATA;
+extern const wchar_t* FORM_PHOTOSTORY_NEW;
+extern const wchar_t* FORM_PHOTOSTORY_MAIN;
 
 class cantataFormFactory
 	: public Tizen::Ui::Scenes::IFormFactory

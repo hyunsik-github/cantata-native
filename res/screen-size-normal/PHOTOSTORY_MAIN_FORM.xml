@@ -6,45 +6,45 @@
 
 <Scene Bversion="3.0.0.201301081120" Dversion="20120315">
     <LogicalCoordinate>720</LogicalCoordinate>
-    <Form id="PHOTOSTORYLIST_FORM">
+    <Form id="PHOTOSTORY_MAIN_FORM">
         <property backgroundColor="" backgroundColorOpacity="100" orientation="Portrait" softKey0NormalIcon="" softKey0PressedIcon="" softKey0Text="" softKey1NormalIcon="" softKey1PressedIcon="" softKey1Text="" title="" titleAlign="ALIGN_CENTER" titleIcon="" translucentFooter="false" translucentHeader="false" translucentIndicator="false"/>
         <layout mode="Portrait" style="FORM_STYLE_INDICATOR|FORM_STYLE_HEADER|FORM_STYLE_FOOTER" type="NONE"/>
         <layout mode="Landscape" style="FORM_STYLE_INDICATOR|FORM_STYLE_HEADER|FORM_STYLE_FOOTER" type="NONE"/>
     </Form>
     <Footer>
-        <property backgroundBitmapPath="" color="" colorOpacity="100" disabledButtonColor="" disabledButtonColorOpacity="100" disabledButtonTextColor="" disabledItemColor="" disabledItemColorOpacity="100" disabledItemTextColor="" footerStyle="FOOTER_STYLE_TAB" highlightedButtonColor="" highlightedButtonColorOpacity="100" highlightedButtonTextColor="" highlightedItemColor="" highlightedItemColorOpacity="100" highlightedItemTextColor="" normalButtonColor="" normalButtonColorOpacity="100" normalButtonTextColor="" normalItemColor="" normalItemColorOpacity="100" normalItemTextColor="" pressedButtonColor="" pressedButtonColorOpacity="100" pressedButtonTextColor="" pressedItemColor="" pressedItemColorOpacity="100" pressedItemTextColor="" selectedItemColor="" selectedItemColorOpacity="100" selectedItemTextColor="" showBackButton="false"/>
+        <property backgroundBitmapPath="" color="" colorOpacity="0" disabledButtonColor="" disabledButtonColorOpacity="0" disabledButtonTextColor="" disabledItemColor="" disabledItemColorOpacity="0" disabledItemTextColor="" footerStyle="FOOTER_STYLE_BUTTON_TEXT" highlightedButtonColor="" highlightedButtonColorOpacity="0" highlightedButtonTextColor="" highlightedItemColor="" highlightedItemColorOpacity="0" highlightedItemTextColor="" normalButtonColor="" normalButtonColorOpacity="0" normalButtonTextColor="" normalItemColor="" normalItemColorOpacity="0" normalItemTextColor="" pressedButtonColor="" pressedButtonColorOpacity="0" pressedButtonTextColor="" pressedItemColor="" pressedItemColorOpacity="0" pressedItemTextColor="" selectedItemColor="" selectedItemColorOpacity="0" selectedItemTextColor="" showBackButton="true"/>
         <itemSet/>
     </Footer>
     <Header>
-        <property backgroundBitmapPath="" color="" colorOpacity="100" descriptionText="" descriptionTextColor="" disabledButtonColor="" disabledButtonColorOpacity="100" disabledButtonTextColor="" disabledItemColor="" disabledItemColorOpacity="100" disabledItemTextColor="" headerStyle="HEADER_STYLE_TITLE" highlightedButtonColor="" highlightedButtonColorOpacity="100" highlightedButtonTextColor="" highlightedItemColor="" highlightedItemColorOpacity="100" highlightedItemTextColor="" normalButtonColor="" normalButtonColorOpacity="100" normalButtonTextColor="" normalItemColor="" normalItemColorOpacity="100" normalItemTextColor="" pressedButtonColor="" pressedButtonColorOpacity="100" pressedButtonTextColor="" pressedItemColor="" pressedItemColorOpacity="100" pressedItemTextColor="" selectedItemColor="" selectedItemColorOpacity="100" selectedItemTextColor="" titleIconPath="" titleText="" titleTextColor=""/>
+        <property backgroundBitmapPath="" color="" colorOpacity="100" descriptionText="" descriptionTextColor="" disabledButtonColor="" disabledButtonColorOpacity="100" disabledButtonTextColor="" disabledItemColor="" disabledItemColorOpacity="100" disabledItemTextColor="" headerStyle="HEADER_STYLE_TITLE" highlightedButtonColor="" highlightedButtonColorOpacity="100" highlightedButtonTextColor="" highlightedItemColor="" highlightedItemColorOpacity="100" highlightedItemTextColor="" normalButtonColor="" normalButtonColorOpacity="100" normalButtonTextColor="" normalItemColor="" normalItemColorOpacity="100" normalItemTextColor="" pressedButtonColor="" pressedButtonColorOpacity="100" pressedButtonTextColor="" pressedItemColor="" pressedItemColorOpacity="100" pressedItemTextColor="" selectedItemColor="" selectedItemColorOpacity="100" selectedItemTextColor="" titleIconPath="" titleText="PhotoStory List" titleTextColor=""/>
         <itemSet/>
     </Header>
-    <IconListView id="IDC_ICONLISTVIEW1" parent="PHOTOSTORYLIST_FORM">
+    <IconListView id="IDC_ICONLISTVIEW1" parent="PHOTOSTORY_MAIN_FORM">
         <property backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" bitmapPathOfEmptyList="" checkBoxPosition="ICON_LIST_VIEW_CHECK_BOX_POSITION_TOP_RIGHT" colorOfEmptyListText="" highlightedItemTextColor="" itemBitmapHeight="100" itemBitmapWidth="100" itemBorderStyle="ICON_LIST_VIEW_ITEM_BORDER_STYLE_SHADOW" itemHorizontalAlignment="ALIGNMENT_CENTER" itemHorizontalSpacing="2" itemTextHorizontalAlignment="ALIGNMENT_CENTER" itemTextSize="30" itemTextVerticalAlignment="ICON_LIST_VIEW_ITEM_TEXT_VERTICAL_ALIGNMENT_INSIDE_BOTTOM" itemVerticalAlignment="ALIGNMENT_MIDDLE" itemVerticalSpacing="2" magneticScrollSize="0" normalItemTextColor="" pressedItemTextColor="" scrollDirection="ICON_LIST_VIEW_SCROLL_DIRECTION_VERTICAL" textOfEmptyList="" touchAnimationEnabled="true"/>
         <layout height="784" mode="Portrait" style="ICON_LIST_VIEW_STYLE_NORMAL" width="682" x="22" y="113"/>
         <layout height="124" mode="Landscape" style="ICON_LIST_VIEW_STYLE_NORMAL" width="730" x="375" y="58"/>
     </IconListView>
-    <Button id="btnEdit" parent="PHOTOSTORYLIST_FORM">
+    <Button id="btnEdit" parent="PHOTOSTORY_MAIN_FORM">
         <property disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Edit" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="72" mode="Portrait" width="119" x="585" y="920"/>
         <layout height="72" mode="Landscape" width="211" x="1068" y="423"/>
     </Button>
-    <Button id="btnAdd" parent="PHOTOSTORYLIST_FORM">
+    <Button id="btnAdd" parent="PHOTOSTORY_MAIN_FORM">
         <property disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Add" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="72" mode="Portrait" width="119" x="461" y="920"/>
         <layout height="72" mode="Landscape" width="211" x="1078" y="423"/>
     </Button>
-    <Button id="ByDate" parent="PHOTOSTORYLIST_FORM">
+    <Button id="ByDate" parent="PHOTOSTORY_MAIN_FORM">
         <property disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Date" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="93" mode="Portrait" width="219" x="485" y="9"/>
         <layout height="72" mode="Landscape" width="533" x="205" y="30"/>
     </Button>
-    <Button id="ByPhoto" parent="PHOTOSTORYLIST_FORM">
+    <Button id="ByPhoto" parent="PHOTOSTORY_MAIN_FORM">
         <property disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Photo" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="93" mode="Portrait" width="219" x="22" y="9"/>
         <layout height="72" mode="Landscape" width="533" x="215" y="40"/>
     </Button>
-    <Button id="ByTitle" parent="PHOTOSTORYLIST_FORM">
+    <Button id="ByTitle" parent="PHOTOSTORY_MAIN_FORM">
         <property disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Title" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="93" mode="Portrait" width="219" x="253" y="9"/>
         <layout height="72" mode="Landscape" width="533" x="215" y="40"/>

@@ -7,8 +7,9 @@
 #include <FUi.h>
 
 
-extern const wchar_t* SCENE_NEWPHOTOSTORY_FORM;
-extern const wchar_t* SCENE_PHOTOSTORYLIST_FORM;
+extern const wchar_t* SCENE_CANTATA;
+extern const wchar_t* SCENE_PHOTOSTORY_NEW;
+extern const wchar_t* SCENE_PHOTOSTORY_MAIN;
 /**
  * [cantataApp] UiApp must inherit from UiApp class
  * which provides basic features necessary to define an UiApp.

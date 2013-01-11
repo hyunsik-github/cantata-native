@@ -28,7 +28,7 @@ public:
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
 protected:
-	static const int ID_BUTTON_OK = 100;
+	static const int ID_BUTTON_PHOTOSTORY = 100;
 //	static const int ID_BUTTON_PHOTO = 101;
 //	static const int ID_BUTTON_TITLE = 102;
 //	static const int ID_BUTTON_DATE = 103;

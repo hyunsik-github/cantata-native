@@ -1,28 +1,32 @@
-/*
- * PhotoStoryList.h
- *
- *  Created on: Jan 9, 2013
- *      Author: hyunsik
- */
+
+#ifndef _PHOTOSTORYNEWFORM_H_
+#define _PHOTOSTORYNEWFORM_H_
+
 #include <FBase.h>
 #include <FUi.h>
 
-#ifndef PHOTOSTORYLIST_H_
-#define PHOTOSTORYLIST_H_
 
-class PhotoStoryList
-	: public Tizen::Ui::Controls::Form
-	, public Tizen::Ui::ITextBlockEventListener
-	, public Tizen::Ui::ITouchEventListener
+
+class photoStoryNewForm :
+	public Tizen::Ui::Controls::Form,
+ 	public Tizen::Ui::ITextBlockEventListener,
+ 	public Tizen::Ui::ITouchEventListener
 {
-public:
-	PhotoStoryList();
-	virtual ~PhotoStoryList();
-	bool Initialize();
-	virtual result OnInitializing(void);
-	virtual result OnTerminating(void);
 
-public :
+// Construction
+public:
+	photoStoryNewForm(void);
+	virtual ~photoStoryNewForm(void);
+	bool Initialize();
+	result OnInitializing(void);
+	result OnTerminating(void);
+
+// Implementation
+protected:
+
+// Generated call-back functions
+public:
+
 	virtual void OnTextBlockSelected(Tizen::Ui::Control& source, int start, int end);
 	virtual void OnTouchDoublePressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo);
 	virtual void OnTouchFocusIn(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo);
@@ -33,4 +37,4 @@ public :
 	virtual void OnTouchReleased(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo);
 };
 
-#endif /* PHOTOSTORYLIST_H_ */
+#endif

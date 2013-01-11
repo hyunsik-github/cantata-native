@@ -19,8 +19,9 @@ using namespace Tizen::Ui;
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
 
-const wchar_t* SCENE_NEWPHOTOSTORY_FORM = L"Scene_NewPhotoStoryForm";
-const wchar_t* SCENE_PHOTOSTORYLIST_FORM = L"Scene_PhotoStoryListForm";
+const wchar_t* SCENE_CANTATA = L"Cantata_Scene";
+const wchar_t* SCENE_PHOTOSTORY_MAIN = L"PhotoStory_Main_Scene";
+const wchar_t* SCENE_PHOTOSTORY_NEW = L"PhotoStory_New_Scene";
 
 
 cantataApp::cantataApp(void)
@@ -74,12 +75,13 @@ cantataApp::OnAppInitialized(void)
 	static cantataPanelFactory panelFactory;
 	pSceneManager->RegisterFormFactory(formFactory);
 	pSceneManager->RegisterPanelFactory(panelFactory);
-	pSceneManager->RegisterScene(L"MainScene", L"MainForm", L"");
-	pSceneManager->RegisterScene(SCENE_NEWPHOTOSTORY_FORM, IDL_NewPhotoStory, L"");
-	pSceneManager->RegisterScene(SCENE_PHOTOSTORYLIST_FORM, IDL_PhotoStoryList, L"");
+	pSceneManager->RegisterScene(SCENE_CANTATA, FORM_CANTATA, L"");
+	pSceneManager->RegisterScene(SCENE_PHOTOSTORY_MAIN, FORM_PHOTOSTORY_MAIN, L"");
+	pSceneManager->RegisterScene(SCENE_PHOTOSTORY_NEW, FORM_PHOTOSTORY_NEW, L"");
+
 
 	// Goto the scene.
-	if (pSceneManager->GoForward(ForwardSceneTransition(L"MainScene")) != E_SUCCESS)
+	if (pSceneManager->GoForward(ForwardSceneTransition(SCENE_CANTATA)) != E_SUCCESS)
 		return false;
 
 	return true;

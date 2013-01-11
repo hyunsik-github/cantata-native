@@ -1,4 +1,5 @@
 #include <FApp.h>
+#include "cantata.h"
 #include "cantataMainForm.h"
 #include "ResourceAfx.h"
 #include <stdlib.h>
@@ -20,7 +21,7 @@ cantataMainForm::~cantataMainForm(void)
 bool
 cantataMainForm::Initialize(void)
 {
-	Construct(L"CANTATAMAIN_FORM");
+	Construct(IDL_CANTATA);
 	AppLogTag("cantataMainForm", "cantataMainForm::Initialize");
 	return true;
 }
@@ -37,12 +38,12 @@ cantataMainForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	Tizen::Ui::Controls::Button *pButtonOk = static_cast<Button*>(GetControl(IDC_BUTTON_OK));
-	if (pButtonOk != null)
+	Tizen::Ui::Controls::Button *pButtonPhotoStory = static_cast<Button*>(GetControl(IDC_BUTTON_PHOTOSTORY));
+	if (pButtonPhotoStory != null)
 	{
-		pButtonOk->SetActionId(ID_BUTTON_OK);
-		pButtonOk->AddActionEventListener(*this);
-		pButtonOk->AddTouchEventListener(*this);
+		pButtonPhotoStory->SetActionId(ID_BUTTON_PHOTOSTORY);
+		pButtonPhotoStory->AddActionEventListener(*this);
+		pButtonPhotoStory->AddTouchEventListener(*this);
 	}
 
 //	Button *pBtnadd = static_cast<Button *>(GetControl(IDC_BUTTON_ADD));
@@ -72,10 +73,9 @@ cantataMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionI
 	AppAssert(pSceneManager);
 	switch(actionId)
 	{
-	case ID_BUTTON_OK: {
+	case ID_BUTTON_PHOTOSTORY: {
 		AppLogTag("cantata", "Open PhotoStoryList");
-		pSceneManager->GoForward(ForwardSceneTransition(IDL_PhotoStoryList));
-		pSceneManager->GoForward(ForwardSceneTransition(IDL_PhotoStoryList, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PHOTOSTORY_MAIN, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
 //		String appName = App::GetInstance()->GetAppRootPath() + App::GetInstance()->GetAppName();
 //		String resPath = App::GetInstance()->GetAppResourcePath();
 //		const wchar_t *pAppPath = (const wchar_t*)appName.GetPointer();
