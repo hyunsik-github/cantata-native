@@ -4,13 +4,19 @@
 
 #include <FBase.h>
 #include <FUi.h>
+#include <FApp.h>
+#include <stdlib.h>
+
+#include "ResourceAfx.h"
 
 
 
-class photoStoryNewForm :
-	public Tizen::Ui::Controls::Form,
- 	public Tizen::Ui::ITextBlockEventListener,
- 	public Tizen::Ui::ITouchEventListener
+class photoStoryNewForm
+	: public Tizen::Ui::Controls::Form
+	, public Tizen::Ui::IActionEventListener
+	, public Tizen::Ui::Controls::IFormBackEventListener
+ 	, public Tizen::Ui::ITextBlockEventListener
+ 	, public Tizen::Ui::ITouchEventListener
 {
 
 // Construction
@@ -20,6 +26,12 @@ public:
 	bool Initialize();
 	result OnInitializing(void);
 	result OnTerminating(void);
+	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
+	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
+//	virtual void OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
+//			const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
+//	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
+//			const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
 // Implementation
 protected:

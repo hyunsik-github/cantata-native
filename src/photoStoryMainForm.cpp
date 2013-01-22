@@ -4,20 +4,24 @@
  *  Created on: Jan 9, 2013
  *      Author: hyunsik
  */
-#include <FApp.h>
 #include "cantata.h"
-#include "ResourceAfx.h"
 #include "photoStoryMainForm.h"
-#include <stdlib.h>
+
 
 using namespace Tizen::Base;
 using namespace Tizen::App;
 using namespace Tizen::Ui;
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
+using namespace Tizen::Content;
+using namespace Tizen::Graphics;
 
-photoStoryMainForm::photoStoryMainForm() {
-
+photoStoryMainForm::photoStoryMainForm()
+	: __pPhotoStoryListView(null)
+	, __pSearchResultList(null)
+	, __contentType(CONTENT_TYPE_IMAGE)
+{
+	SearhPhotoStory();
 }
 
 photoStoryMainForm::~photoStoryMainForm() {
@@ -28,6 +32,10 @@ photoStoryMainForm::Initialize()
 {
 	Form::Construct(IDL_PHOTOSTORY_MAIN);
 	AppLogTag("cantata", "photoStoryMainForm Initialize");
+
+	__pPhotoStoryListView = new IconListView();
+	TryReturn(__pPhotoStoryListView != null, false, "__pPhotoStoryListView is null.");
+
 	return true;
 }
 
@@ -36,24 +44,26 @@ photoStoryMainForm::OnInitializing(void)
 {
 	result r = E_SUCCESS;
 
-	// TODO: Add your initialization code here
-
-	// Setup back event listener
+	Footer* pFooter = GetFooter();
+	pFooter->AddActionEventListener(*this);
 	SetFormBackEventListener(this);
 
-//	TextBox *pText_story = static_cast<TextBox *>(GetControl("text_Story"));
-//	if(pText_story)
-//	{
-//		pText_story->AddTouchEventListener(*this);
-//	}
+	__pPhotoStoryListView->Construct(Rectangle(0, 0, GetClientAreaBounds().width, GetClientAreaBounds().height), Dimension(100, 100), ICON_LIST_VIEW_STYLE_NORMAL, ICON_LIST_VIEW_SCROLL_DIRECTION_VERTICAL);
 
-	Tizen::Ui::Controls::Button *pButtonAdd = static_cast<Button*>(GetControl(IDC_BUTTON_ADD));
+	__pPhotoStoryListView->SetTextOfEmptyList(L"No PhotoStory");
+	__pPhotoStoryListView->SetItemProvider(*this);
+	__pPhotoStoryListView->AddIconListViewItemEventListener(*this);
+
+	AddControl(*__pPhotoStoryListView);
+
+	Button *pButtonAdd = static_cast<Button*>(GetControl(IDC_BUTTON_ADD));
 	if (pButtonAdd != null)
 	{
 		pButtonAdd->SetActionId(ID_BUTTON_ADD);
 		pButtonAdd->AddActionEventListener(*this);
-		pButtonAdd->AddTouchEventListener(*this);
+//		pButtonAdd->AddTouchEventListener(*this);
 	}
+
 	return r;
 }
 
@@ -62,9 +72,44 @@ photoStoryMainForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
 
-	// TODO: Add your termination code here
+	return r;
+}
+
+result
+photoStoryMainForm::SearhPhotoStory(void)
+{
+	result r = E_SUCCESS;
+	ContentSearch contentSearch;
+	String sortColumn = L"";
+	int totalPage = 0;
+	int totalCount = 0;
+	int page = 1;
+
+	// Clear the previous result
+	initResultList();
+
+	r = contentSearch.Construct(__contentType);
+	TryReturn(E_SUCCESS == r, r, "Construct() failed by %s.", GetErrorMessage(r));
+
+//	strQuery = makeQuery(query);
+
+	// execute
+	__pSearchResultList = contentSearch.SearchN(page, 12, totalPage, totalCount, L"", sortColumn, SORT_ORDER_NONE);
+	r = GetLastResult();
+	TryReturn(__pSearchResultList != null, r, "ContentSearch.SearchN() failed by %s.", GetErrorMessage(r));
 
 	return r;
+}
+
+void
+photoStoryMainForm::initResultList(void)
+{
+	if (__pSearchResultList != null)
+	{
+		__pSearchResultList->RemoveAll(true);
+		delete __pSearchResultList;
+		__pSearchResultList = null;
+	}
 }
 
 void
@@ -77,23 +122,6 @@ photoStoryMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int acti
 	case ID_BUTTON_ADD: {
 		AppLogTag("cantata", "Open New PhotoStory");
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PHOTOSTORY_NEW, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
-//		String appName = App::GetInstance()->GetAppRootPath() + App::GetInstance()->GetAppName();
-//		String resPath = App::GetInstance()->GetAppResourcePath();
-//		const wchar_t *pAppPath = (const wchar_t*)appName.GetPointer();
-//		const wchar_t *pResPath = (const wchar_t*)resPath.GetPointer();
-//		char app_path[512];
-//		char res_path[512];
-//		char js_path[512];
-//		char node_path[512];
-//		char command[512];
-//
-//		wcstombs(app_path, pAppPath, appName.GetLength()+1);
-//		wcstombs(res_path, pResPath, resPath.GetLength()+1);
-//		sprintf(node_path, "%s%s", res_path,"node");
-//		sprintf(js_path, "%s%s", res_path,"app.js");
-//
-//		sprintf(command, "%s %s", node_path, js_path);
-//		system(command);
 
 		break;
 	}
@@ -104,11 +132,34 @@ photoStoryMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int acti
 }
 
 void
+OnIconListViewItemStateChanged(Tizen::Ui::Controls::IconListView& iconListView, int index, Tizen::Ui::Controls::IconListViewItemStatus status)
+{
+}
+
+void
 photoStoryMainForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-	UiApp* pApp = UiApp::GetInstance();
-	AppAssert(pApp);
-	pApp->Terminate();
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+	pSceneManager->GoBackward(BackwardSceneTransition());
+}
+
+IconListViewItem*
+photoStoryMainForm::CreateItem(int index)
+{
+	return null;
+}
+
+int
+photoStoryMainForm::GetItemCount(void)
+{
+	return 0;
+}
+
+bool
+photoStoryMainForm::DeleteItem(int index, IconListViewItem* pItem)
+{
+	return true;
 }
 
 void
@@ -129,58 +180,58 @@ photoStoryMainForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& current
 	AppLog("OnSceneDeactivated");
 }
 
-void
-photoStoryMainForm::OnTextBlockSelected(Tizen::Ui::Control& source, int start, int end)
-{
-	// TODO: Add your implementation codes here
-
-}
-
-void
-photoStoryMainForm::OnTouchDoublePressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
-{
-	// TODO: Add your implementation codes here
-
-}
-
-void
-photoStoryMainForm::OnTouchFocusIn(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
-{
-	// TODO: Add your implementation codes here
-
-}
-
-void
-photoStoryMainForm::OnTouchFocusOut(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
-{
-	// TODO: Add your implementation codes here
-
-}
-
-void
-photoStoryMainForm::OnTouchLongPressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
-{
-	// TODO: Add your implementation codes here
-
-}
-
-void
-photoStoryMainForm::OnTouchMoved(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
-{
-	// TODO: Add your implementation codes here
-
-}
-
-void
-photoStoryMainForm::OnTouchPressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
-{
-	// TODO: Add your implementation codes here
-
-}
-
-void
-photoStoryMainForm::OnTouchReleased(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
-{
-	// TODO: Add your implementation codes here
-
-}
+//void
+//photoStoryMainForm::OnTextBlockSelected(Tizen::Ui::Control& source, int start, int end)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}
+//
+//void
+//photoStoryMainForm::OnTouchDoublePressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}
+//
+//void
+//photoStoryMainForm::OnTouchFocusIn(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}
+//
+//void
+//photoStoryMainForm::OnTouchFocusOut(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}
+//
+//void
+//photoStoryMainForm::OnTouchLongPressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}
+//
+//void
+//photoStoryMainForm::OnTouchMoved(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}
+//
+//void
+//photoStoryMainForm::OnTouchPressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}
+//
+//void
+//photoStoryMainForm::OnTouchReleased(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo)
+//{
+//	// TODO: Add your implementation codes here
+//
+//}

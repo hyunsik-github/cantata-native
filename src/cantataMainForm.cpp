@@ -73,32 +73,16 @@ cantataMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionI
 	AppAssert(pSceneManager);
 	switch(actionId)
 	{
-	case ID_BUTTON_PHOTOSTORY: {
-		AppLogTag("cantata", "Open PhotoStoryList");
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PHOTOSTORY_MAIN, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
-//		String appName = App::GetInstance()->GetAppRootPath() + App::GetInstance()->GetAppName();
-//		String resPath = App::GetInstance()->GetAppResourcePath();
-//		const wchar_t *pAppPath = (const wchar_t*)appName.GetPointer();
-//		const wchar_t *pResPath = (const wchar_t*)resPath.GetPointer();
-//		char app_path[512];
-//		char res_path[512];
-//		char js_path[512];
-//		char node_path[512];
-//		char command[512];
-//
-//		wcstombs(app_path, pAppPath, appName.GetLength()+1);
-//		wcstombs(res_path, pResPath, resPath.GetLength()+1);
-//		sprintf(node_path, "%s%s", res_path,"node");
-//		sprintf(js_path, "%s%s", res_path,"app.js");
-//
-//		sprintf(command, "%s %s", node_path, js_path);
-//		system(command);
+		case ID_BUTTON_PHOTOSTORY:
+		{
+			AppLogTag("cantata", "Open PhotoStoryList");
+			pSceneManager->GoForward(ForwardSceneTransition(SCENE_PHOTOSTORY_MAIN, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
 
-		break;
-	}
+			break;
+		}
 
-	default:
-		break;
+		default:
+			break;
 	}
 }
 
