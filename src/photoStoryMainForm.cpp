@@ -9,6 +9,7 @@
 
 
 using namespace Tizen::Base;
+using namespace Tizen::Base::Collection;
 using namespace Tizen::App;
 using namespace Tizen::Ui;
 using namespace Tizen::Ui::Controls;
@@ -132,8 +133,20 @@ photoStoryMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int acti
 }
 
 void
-OnIconListViewItemStateChanged(Tizen::Ui::Controls::IconListView& iconListView, int index, Tizen::Ui::Controls::IconListViewItemStatus status)
+photoStoryMainForm::OnIconListViewItemStateChanged(Tizen::Ui::Controls::IconListView& iconListView, int index, Tizen::Ui::Controls::IconListViewItemStatus status)
 {
+}
+
+void
+photoStoryMainForm::OnIconListViewOverlayBitmapSelected(Tizen::Ui::Controls::IconListView& iconListView, int index, int overlayBitmapId)
+{
+
+}
+
+void
+photoStoryMainForm::OnIconListViewItemReordered(Tizen::Ui::Controls::IconListView&  iconListView, int indexFrom, int indexTo)
+{
+
 }
 
 void
@@ -153,7 +166,14 @@ photoStoryMainForm::CreateItem(int index)
 int
 photoStoryMainForm::GetItemCount(void)
 {
-	return 0;
+	int count = 0;
+
+	if (__pSearchResultList != null)
+		{
+			count = __pSearchResultList->GetCount();
+		}
+	AppLogTag("cantata", "Get Item Count");
+	return count;
 }
 
 bool

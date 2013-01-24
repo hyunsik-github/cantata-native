@@ -35,11 +35,16 @@ public:
 			const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 			const Tizen::Ui::Scenes::SceneId& nextSceneId);
-
+	//IIconListViewItemEventListener
 	virtual void OnIconListViewItemStateChanged(Tizen::Ui::Controls::IconListView& iconListView, int index, Tizen::Ui::Controls::IconListViewItemStatus status);
+	virtual void OnIconListViewOverlayBitmapSelected(Tizen::Ui::Controls::IconListView& iconListView, int index, int overlayBitmapId);
+	virtual void OnIconListViewItemReordered(Tizen::Ui::Controls::IconListView&  iconListView, int indexFrom, int indexTo);
+
+	//IIconListViewItemProvider
+	virtual int GetItemCount(void);
 	virtual Tizen::Ui::Controls::IconListViewItem* CreateItem(int index);
 	virtual bool DeleteItem(int index, Tizen::Ui::Controls::IconListViewItem* pItem);
-	virtual int GetItemCount(void);
+
 
 protected:
 	static const int ID_BUTTON_ADD = 201;
