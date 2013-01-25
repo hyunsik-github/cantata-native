@@ -61,6 +61,7 @@ protected:
 private:
 	result SearhPhotoStory(void);
 	void initResultList(void);
+	String GetContentFileName(int index) const;
 
 private:
 	Tizen::Ui::Controls::IconListView* __pPhotoStoryListView;

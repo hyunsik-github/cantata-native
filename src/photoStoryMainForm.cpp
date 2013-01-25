@@ -160,6 +160,8 @@ photoStoryMainForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 IconListViewItem*
 photoStoryMainForm::CreateItem(int index)
 {
+	GetContentFileName(index);
+	AppLogTag("cantata", "Ctreat Item");
 	return null;
 }
 
@@ -186,9 +188,10 @@ void
 photoStoryMainForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
-	// TODO:
-	// Add your scene activate code here
-	AppLog("OnSceneActivatedN");
+	result r = E_SUCCESS;
+
+	r = __pPhotoStoryListView->UpdateList();
+	TryReturnVoid(!IsFailed(r), "UpdateList failed.");
 }
 
 void
@@ -255,3 +258,40 @@ photoStoryMainForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& current
 //	// TODO: Add your implementation codes here
 //
 //}
+
+String
+photoStoryMainForm::GetContentFileName(int index) const
+{
+	String contentFullPath;
+	String contentFileName;
+	String delimeter = L"/";
+	int filenamePos = 0;
+	ContentSearchResult* pInfo = null;
+	result r = E_SUCCESS;
+
+	contentFileName.Clear();
+
+	TryReturn(__pSearchResultList != null, contentFileName, "No search result");
+
+	pInfo = (ContentSearchResult*)__pSearchResultList->GetAt(index);
+	contentFullPath = ((ContentInfo*)pInfo->GetContentInfo())->GetContentPath();
+	if (contentFullPath.IsEmpty() == false)
+	{
+		// eliminate a directory name from the ContentPath
+		r = contentFullPath.LastIndexOf(delimeter, contentFullPath.GetLength() - 1, filenamePos);
+		if (r == E_SUCCESS && filenamePos > 0)
+		{
+			r = contentFullPath.SubString(filenamePos + 1, contentFileName);
+			if (r != E_SUCCESS)
+			{
+				contentFileName = contentFullPath;
+			}
+		}
+		else
+		{
+			contentFileName = contentFullPath;
+		}
+	}
+
+    return contentFileName;
+}
