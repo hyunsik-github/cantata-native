@@ -5,8 +5,11 @@
 #include <FBase.h>
 #include <FUi.h>
 #include <FApp.h>
+#include <FIo.h>
+#include <FContent.h>
 #include <stdlib.h>
 
+#include "cantata.h"
 #include "ResourceAfx.h"
 
 
@@ -15,6 +18,7 @@ class photoStoryNewForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
+//	, public Tizen::Ui::ITextEventListener
  	, public Tizen::Ui::ITextBlockEventListener
  	, public Tizen::Ui::ITouchEventListener
 {
@@ -33,6 +37,11 @@ public:
 //	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 //			const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
+	// ITextEventListener
+//	virtual void OnTextValueChanged(const Tizen::Ui::Control& source);
+//	virtual void OnTextValueChangeCanceled(const Tizen::Ui::Control& source);
+
+
 // Implementation
 protected:
 
@@ -47,6 +56,14 @@ public:
 	virtual void OnTouchMoved(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo);
 	virtual void OnTouchPressed(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo);
 	virtual void OnTouchReleased(const Tizen::Ui::Control& source, const Tizen::Graphics::Point& currentPosition, const Tizen::Ui::TouchEventInfo& touchInfo);
+
+public:
+	static const int ID_BUTTON_SAVE = 211;
+	static const int ID_BUTTON_CANCEL = 212;
+
+private:
+	Tizen::Ui::Controls::EditField *pEditTitle;
+	Tizen::Ui::Controls::EditArea *pEditStory;
 };
 
 #endif

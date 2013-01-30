@@ -7,14 +7,17 @@ static const wchar_t* IDL_CANTATA = L"CANTATA_FORM";
 static const wchar_t* IDL_PHOTOSTORY_NEW = L"PHOTOSTORY_NEW_FORM";
 static const wchar_t* IDL_PHOTOSTORY_MAIN = L"PHOTOSTORY_MAIN_FORM";
 
-static const wchar_t* IDC_ICONLISTVIEW = L"viewIconList";
+static const wchar_t* IDC_LISTVIEW = L"listPhotoStory";
 
-static const wchar_t* IDC_BUTTON_BY_PHOTO = L"ByPhoto";
-static const wchar_t* IDC_BUTTON_BY_TITLE = L"ByTitle";
-static const wchar_t* IDC_BUTTON_BY_DATE = L"ByDate";
+static const wchar_t* IDC_BUTTON_BY_PHOTO = L"btnByPhoto";
+static const wchar_t* IDC_BUTTON_BY_TITLE = L"btnByTitle";
+static const wchar_t* IDC_BUTTON_BY_DATE = L"btnByDate";
 
 static const wchar_t* IDC_BUTTON_ADD = L"btnAdd";
 static const wchar_t* IDC_BUTTON_EDIT = L"btnEdit";
+
+static const wchar_t* IDC_BUTTON_SAVE = L"btnSave";
+static const wchar_t* IDC_BUTTON_CANCEL = L"btnCancel";
 
 static const wchar_t* IDC_TEXTBOX_STORY = L"textStory";
 static const wchar_t* IDC_TEXTBOX_TITLE = L"textTitle";

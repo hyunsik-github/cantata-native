@@ -4,7 +4,7 @@
 -->
 <!DOCTYPE Scene SYSTEM "UIForm.dtd">
 
-<Scene Bversion="3.0.0.201301181015" Dversion="20120315">
+<Scene Bversion="3.0.0.201301290950" Dversion="20120315">
     <LogicalCoordinate>720</LogicalCoordinate>
     <Form id="PHOTOSTORY_MAIN_FORM">
         <property backgroundColor="" backgroundColorOpacity="100" orientation="Portrait" softKey0NormalIcon="" softKey0PressedIcon="" softKey0Text="" softKey1NormalIcon="" softKey1PressedIcon="" softKey1Text="" title="" titleAlign="ALIGN_CENTER" titleIcon="" translucentFooter="false" translucentHeader="false" translucentIndicator="false"/>
@@ -19,11 +19,6 @@
         <property backgroundBitmapPath="" color="" colorOpacity="100" descriptionText="" descriptionTextColor="" disabledButtonColor="" disabledButtonColorOpacity="100" disabledButtonTextColor="" disabledItemColor="" disabledItemColorOpacity="100" disabledItemTextColor="" headerStyle="HEADER_STYLE_TITLE" highlightedButtonColor="" highlightedButtonColorOpacity="100" highlightedButtonTextColor="" highlightedItemColor="" highlightedItemColorOpacity="100" highlightedItemTextColor="" normalButtonColor="" normalButtonColorOpacity="100" normalButtonTextColor="" normalItemColor="" normalItemColorOpacity="100" normalItemTextColor="" pressedButtonColor="" pressedButtonColorOpacity="100" pressedButtonTextColor="" pressedItemColor="" pressedItemColorOpacity="100" pressedItemTextColor="" selectedItemColor="" selectedItemColorOpacity="100" selectedItemTextColor="" titleIconPath="" titleText="PhotoStory List" titleTextColor=""/>
         <itemSet/>
     </Header>
-    <IconListView id="viewIconList" parent="PHOTOSTORY_MAIN_FORM">
-        <property backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" bitmapPathOfEmptyList="" checkBoxPosition="ICON_LIST_VIEW_CHECK_BOX_POSITION_TOP_RIGHT" colorOfEmptyListText="" highlightedItemTextColor="" itemBitmapHeight="100" itemBitmapWidth="100" itemBorderStyle="ICON_LIST_VIEW_ITEM_BORDER_STYLE_SHADOW" itemHorizontalAlignment="ALIGNMENT_CENTER" itemHorizontalSpacing="2" itemTextHorizontalAlignment="ALIGNMENT_CENTER" itemTextSize="30" itemTextVerticalAlignment="ICON_LIST_VIEW_ITEM_TEXT_VERTICAL_ALIGNMENT_INSIDE_BOTTOM" itemVerticalAlignment="ALIGNMENT_MIDDLE" itemVerticalSpacing="2" magneticScrollSize="0" normalItemTextColor="" pressedItemTextColor="" scrollDirection="ICON_LIST_VIEW_SCROLL_DIRECTION_VERTICAL" textOfEmptyList="" touchAnimationEnabled="true"/>
-        <layout height="784" mode="Portrait" style="ICON_LIST_VIEW_STYLE_NORMAL" width="682" x="22" y="113"/>
-        <layout height="124" mode="Landscape" style="ICON_LIST_VIEW_STYLE_NORMAL" width="730" x="375" y="58"/>
-    </IconListView>
     <Button id="btnEdit" parent="PHOTOSTORY_MAIN_FORM">
         <property DisabledBitmapX="0" DisabledBitmapY="0" NormalBitmapX="0" NormalBitmapY="0" PressedBitmapX="0" PressedBitmapY="0" disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Edit" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="72" mode="Portrait" width="119" x="585" y="920"/>
@@ -34,19 +29,24 @@
         <layout height="72" mode="Portrait" width="119" x="461" y="920"/>
         <layout height="72" mode="Landscape" width="211" x="1069" y="412"/>
     </Button>
-    <Button id="ByDate" parent="PHOTOSTORY_MAIN_FORM">
+    <Button id="btnByDate" parent="PHOTOSTORY_MAIN_FORM">
         <property DisabledBitmapX="0" DisabledBitmapY="0" NormalBitmapX="0" NormalBitmapY="0" PressedBitmapX="0" PressedBitmapY="0" disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Date" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="93" mode="Portrait" width="219" x="485" y="9"/>
         <layout height="72" mode="Landscape" width="533" x="205" y="30"/>
     </Button>
-    <Button id="ByPhoto" parent="PHOTOSTORY_MAIN_FORM">
+    <Button id="btnByPhoto" parent="PHOTOSTORY_MAIN_FORM">
         <property DisabledBitmapX="0" DisabledBitmapY="0" NormalBitmapX="0" NormalBitmapY="0" PressedBitmapX="0" PressedBitmapY="0" disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Photo" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="93" mode="Portrait" width="219" x="22" y="9"/>
         <layout height="72" mode="Landscape" width="533" x="215" y="40"/>
     </Button>
-    <Button id="ByTitle" parent="PHOTOSTORY_MAIN_FORM">
+    <Button id="btnByTitle" parent="PHOTOSTORY_MAIN_FORM">
         <property DisabledBitmapX="0" DisabledBitmapY="0" NormalBitmapX="0" NormalBitmapY="0" PressedBitmapX="0" PressedBitmapY="0" disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Title" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="93" mode="Portrait" width="219" x="253" y="9"/>
         <layout height="72" mode="Landscape" width="533" x="215" y="40"/>
     </Button>
+    <ListView id="listPhotoStory" parent="PHOTOSTORY_MAIN_FORM">
+        <property backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" bitmapPathOfEmptyList="" colorOfEmptyListText="" fastScroll="false" itemDivider="true" itemDividerColor="" sweepEnabled="false" textOfEmptyList=""/>
+        <layout height="777" mode="Portrait" width="681" x="22" y="118"/>
+        <layout height="124" mode="Landscape" width="730" x="197" y="36"/>
+    </ListView>
 </Scene>

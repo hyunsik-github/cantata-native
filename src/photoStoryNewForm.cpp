@@ -1,12 +1,17 @@
 #include "photoStoryNewForm.h"
 
+using namespace Tizen::App;
 using namespace Tizen::Base;
 using namespace Tizen::Ui;
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
+using namespace Tizen::Io;
+using namespace Tizen::Content;
 
 
 photoStoryNewForm::photoStoryNewForm(void)
+	: pEditTitle(null)
+	, pEditStory(null)
 {
 }
 
@@ -32,10 +37,21 @@ photoStoryNewForm::OnInitializing(void)
 	Footer* pFooter = GetFooter();
 	pFooter->AddActionEventListener(*this);
 
-	TextBox *pText_story = static_cast<TextBox *>(GetControl("text_Story"));  
-	if(pText_story)
+	pEditTitle = static_cast<EditField*>(GetControl(IDC_TEXTBOX_TITLE));
+	pEditTitle->Clear();
+//	if (pEditTitle != null)
+//	{
+//		pEditTitle->AddTextEventListener(*this);
+//	}
+
+	pEditStory = static_cast<EditArea*>(GetControl(IDC_TEXTBOX_STORY));
+	pEditStory->Remove();
+
+	Button *pButtonAdd = static_cast<Button*>(GetControl(IDC_BUTTON_SAVE));
+	if (pButtonAdd != null)
 	{
-		pText_story->AddTouchEventListener(*this);
+		pButtonAdd->SetActionId(ID_BUTTON_SAVE);
+		pButtonAdd->AddActionEventListener(*this);
 	}
 	return r;
 }
@@ -53,37 +69,68 @@ photoStoryNewForm::OnTerminating(void)
 void
 photoStoryNewForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
-//	SceneManager* pSceneManager = SceneManager::GetInstance();
-//	AppAssert(pSceneManager);
-//	switch(actionId)
-//	{
-//	case ID_BUTTON_ADD: {
-//		AppLogTag("cantata", "Open New PhotoStory");
-//		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PHOTOSTORY_NEW, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
-////		String appName = App::GetInstance()->GetAppRootPath() + App::GetInstance()->GetAppName();
-////		String resPath = App::GetInstance()->GetAppResourcePath();
-////		const wchar_t *pAppPath = (const wchar_t*)appName.GetPointer();
-////		const wchar_t *pResPath = (const wchar_t*)resPath.GetPointer();
-////		char app_path[512];
-////		char res_path[512];
-////		char js_path[512];
-////		char node_path[512];
-////		char command[512];
-////
-////		wcstombs(app_path, pAppPath, appName.GetLength()+1);
-////		wcstombs(res_path, pResPath, resPath.GetLength()+1);
-////		sprintf(node_path, "%s%s", res_path,"node");
-////		sprintf(js_path, "%s%s", res_path,"app.js");
-////
-////		sprintf(command, "%s %s", node_path, js_path);
-////		system(command);
-//
-//		break;
-//	}
-//
-//	default:
-//		break;
-//	}
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+	switch(actionId)
+	{
+		case ID_BUTTON_SAVE: {
+			AppLogTag("cantata", "Save New PhotoStory");
+	//		ContentManager contentManager;
+	//		contentManager.Construct();
+	//
+	//		ImageContentInfo imageContentInfo;
+	//		imageContentInfo.Construct(null);
+	//
+	//
+			AppLogTag("cantata", "Create File");
+			String title = pEditTitle->GetText();
+
+			if(title.IsEmpty())
+			{
+				return ;
+			}
+			AppLogTag("cantata", "Create File1");
+			String filePath = App::GetInstance()->GetAppDataPath() + title + L".pts";
+			AppLogTag("cantata", "Create File2");
+			File file;
+			result r = file.Construct(filePath, "w+");
+
+			if (IsFailed(r))
+				{
+					AppLog("File::Construct() is failed by %s", GetErrorMessage(r));
+				}
+
+				r = file.Write(pEditStory->GetText());
+				if (IsFailed(r))
+				{
+					AppLog("File::Write() is failed by %s", GetErrorMessage(r));
+				}
+
+				 ContentId contentId;
+				        ContentManager contentManager;
+				        r = contentManager.Construct();
+//				        TryReturn(!IsFailed(r), r, "Construct failed.");
+
+				        OtherContentInfo otherContentInfo;
+				        r = otherContentInfo.Construct(null);
+//				        TryReturn(!IsFailed(r), r, "Construct failed.");
+
+//				        Tizen::Base::String sourcePath = Tizen::App::App::GetInstance()->GetAppRootPath() + L"data/flower.doc";
+				        Tizen::Base::String destPath = Tizen::System::Environment::GetMediaPath() + L"Others/" + title + L".pts";
+
+				        contentId = contentManager.CreateContent(filePath, destPath, false, &otherContentInfo);
+//				        TryReturn(Tizen::Base::UuId::GetInvalidUuId() != contentId, GetLastResult(), "CreateContent failed.");
+
+
+
+//			pSceneManager->GoForward(ForwardSceneTransition(SCENE_PHOTOSTORY_MAIN, SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
+			pSceneManager->GoBackward(BackwardSceneTransition());
+			break;
+		}
+
+		default:
+			break;
+	}
 }
 
 void
@@ -94,6 +141,16 @@ photoStoryNewForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	pSceneManager->GoBackward(BackwardSceneTransition());
 }
 
+//void
+//photoStoryNewForm::OnTextValueChanged(const Tizen::Ui::Control& source)
+//{
+//}
+//
+//void
+//photoStoryNewForm::OnTextValueChangeCanceled(const Tizen::Ui::Control& source)
+//{
+//
+//}
 
 void
 photoStoryNewForm::OnTextBlockSelected(Tizen::Ui::Control& source, int start, int end)

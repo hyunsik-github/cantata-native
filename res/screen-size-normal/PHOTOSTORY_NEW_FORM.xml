@@ -4,7 +4,7 @@
 -->
 <!DOCTYPE Scene SYSTEM "UIForm.dtd">
 
-<Scene Bversion="3.0.0.201301181015" Dversion="20120315">
+<Scene Bversion="3.0.0.201301290950" Dversion="20120315">
     <LogicalCoordinate>720</LogicalCoordinate>
     <Form id="PHOTOSTORY_NEW_FORM">
         <property backgroundColor="" backgroundColorOpacity="100" orientation="Portrait" softKey0NormalIcon="" softKey0PressedIcon="" softKey0Text="" softKey1NormalIcon="" softKey1PressedIcon="" softKey1Text="" title="" titleAlign="ALIGN_CENTER" titleIcon="" translucentFooter="false" translucentHeader="false" translucentIndicator="false"/>
@@ -21,7 +21,7 @@
     </Header>
     <Gallery id="image_photo" parent="PHOTOSTORY_NEW_FORM">
         <property backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="true"/>
-        <layout height="555" mode="Portrait" width="663" x="27" y="139"/>
+        <layout height="522" mode="Portrait" width="663" x="27" y="139"/>
         <layout height="124" mode="Landscape" width="730" x="108" y="35"/>
     </Gallery>
     <EditField id="textTitle" parent="PHOTOSTORY_NEW_FORM">
@@ -31,7 +31,17 @@
     </EditField>
     <EditArea id="textStory" parent="PHOTOSTORY_NEW_FORM">
         <property disabledBGBitmapPath="" disabledColor="" disabledColorOpacity="100" disabledTextColor="" guideText="Story" guideTextColor="" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalMargin="16" inputStyle="INPUT_STYLE_FULLSCREEN" keypadAction="" keypadStyle="KEYPAD_STYLE_NORMAL" limitLength="1000" linkTextColor="" lowerCaseMode="false" normalBGBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedColor="" pressedColorOpacity="100" text="" textHorizontalAlignment="ALIGNMENT_LEFT" textSize="45" verticalMargin="12" viewMode="false"/>
-        <layout height="264" mode="Portrait" width="663" x="27" y="719"/>
+        <layout height="215" mode="Portrait" width="663" x="27" y="675"/>
         <layout height="135" mode="Landscape" width="426" x="156" y="349"/>
     </EditArea>
+    <Button id="btnSave" parent="PHOTOSTORY_NEW_FORM">
+        <property DisabledBitmapX="0" DisabledBitmapY="0" NormalBitmapX="0" NormalBitmapY="0" PressedBitmapX="0" PressedBitmapY="0" disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Save" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="91" mode="Portrait" width="208" x="482" y="910"/>
+        <layout height="72" mode="Landscape" width="369" x="910" y="462"/>
+    </Button>
+    <Button id="btnCancel" parent="PHOTOSTORY_NEW_FORM">
+        <property DisabledBitmapX="0" DisabledBitmapY="0" NormalBitmapX="0" NormalBitmapY="0" PressedBitmapX="0" PressedBitmapY="0" disableTextColor="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Cancel" textSize="33" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="91" mode="Portrait" width="208" x="255" y="910"/>
+        <layout height="72" mode="Landscape" width="369" x="920" y="472"/>
+    </Button>
 </Scene>

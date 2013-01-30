@@ -20,7 +20,7 @@ using namespace Tizen::Graphics;
 photoStoryMainForm::photoStoryMainForm()
 	: __pPhotoStoryListView(null)
 	, __pSearchResultList(null)
-	, __contentType(CONTENT_TYPE_IMAGE)
+	, __contentType(CONTENT_TYPE_OTHER)
 {
 	SearhPhotoStory();
 }
@@ -34,8 +34,7 @@ photoStoryMainForm::Initialize()
 	Form::Construct(IDL_PHOTOSTORY_MAIN);
 	AppLogTag("cantata", "photoStoryMainForm Initialize");
 
-	__pPhotoStoryListView = new IconListView();
-	TryReturn(__pPhotoStoryListView != null, false, "__pPhotoStoryListView is null.");
+//	TryReturn(__pPhotoStoryListView != null, false, "__pPhotoStoryListView is null.");
 
 	return true;
 }
@@ -49,11 +48,13 @@ photoStoryMainForm::OnInitializing(void)
 	pFooter->AddActionEventListener(*this);
 	SetFormBackEventListener(this);
 
-	__pPhotoStoryListView->Construct(Rectangle(0, 0, GetClientAreaBounds().width, GetClientAreaBounds().height), Dimension(100, 100), ICON_LIST_VIEW_STYLE_NORMAL, ICON_LIST_VIEW_SCROLL_DIRECTION_VERTICAL);
+	Rectangle rect = this->GetClientAreaBounds();
+
+	ListView *__pPhotoStoryListView = static_cast<ListView *>(GetControl(IDC_LISTVIEW));
 
 	__pPhotoStoryListView->SetTextOfEmptyList(L"No PhotoStory");
 	__pPhotoStoryListView->SetItemProvider(*this);
-	__pPhotoStoryListView->AddIconListViewItemEventListener(*this);
+	__pPhotoStoryListView->AddListViewItemEventListener(*this);
 
 	AddControl(*__pPhotoStoryListView);
 
@@ -133,18 +134,19 @@ photoStoryMainForm::OnActionPerformed(const Tizen::Ui::Control& source, int acti
 }
 
 void
-photoStoryMainForm::OnIconListViewItemStateChanged(Tizen::Ui::Controls::IconListView& iconListView, int index, Tizen::Ui::Controls::IconListViewItemStatus status)
-{
-}
-
-void
-photoStoryMainForm::OnIconListViewOverlayBitmapSelected(Tizen::Ui::Controls::IconListView& iconListView, int index, int overlayBitmapId)
+photoStoryMainForm::OnListViewContextItemStateChanged(Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListContextItemStatus state)
 {
 
 }
 
 void
-photoStoryMainForm::OnIconListViewItemReordered(Tizen::Ui::Controls::IconListView&  iconListView, int indexFrom, int indexTo)
+photoStoryMainForm::OnListViewItemStateChanged(Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListItemStatus status)
+{
+
+}
+
+void
+photoStoryMainForm::OnListViewItemSwept(Tizen::Ui::Controls::ListView &listView, int index, Tizen::Ui::Controls::SweepDirection direction)
 {
 
 }
@@ -157,12 +159,26 @@ photoStoryMainForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	pSceneManager->GoBackward(BackwardSceneTransition());
 }
 
-IconListViewItem*
-photoStoryMainForm::CreateItem(int index)
+ListItemBase*
+photoStoryMainForm::CreateItem(int index, int itemWidth)
 {
-	GetContentFileName(index);
-	AppLogTag("cantata", "Ctreat Item");
-	return null;
+	AppLogTag("cantata", "Create Item");
+
+	String contentFileName;
+
+	ListAnnexStyle style = LIST_ANNEX_STYLE_NORMAL;
+	CustomItem* pItem = new (std::nothrow) CustomItem();
+	TryReturn(pItem != null, pItem, "pItem is null.");
+
+	pItem->Construct(Dimension(itemWidth, 50), style);
+
+	contentFileName.Clear();
+
+	contentFileName = GetContentFileName(index);
+
+	pItem->AddElement(Rectangle(17, 0, itemWidth - 40, 50), 100, contentFileName);
+
+	return pItem;
 }
 
 int
@@ -174,12 +190,13 @@ photoStoryMainForm::GetItemCount(void)
 		{
 			count = __pSearchResultList->GetCount();
 		}
-	AppLogTag("cantata", "Get Item Count");
+	AppLogDebug("count: %d", count);
+
 	return count;
 }
 
 bool
-photoStoryMainForm::DeleteItem(int index, IconListViewItem* pItem)
+photoStoryMainForm::DeleteItem(int index, ListItemBase* pItem, int itemWidth)
 {
 	return true;
 }

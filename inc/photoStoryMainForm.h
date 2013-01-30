@@ -16,8 +16,8 @@
 
 class photoStoryMainForm
 	: public Tizen::Ui::Controls::Form
-	, public Tizen::Ui::Controls::IIconListViewItemEventListener
-	, public Tizen::Ui::Controls::IIconListViewItemProvider
+	, public Tizen::Ui::Controls::IListViewItemEventListener
+	, public Tizen::Ui::Controls::IListViewItemProvider
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 //	, public Tizen::Ui::ITextBlockEventListener
@@ -36,14 +36,14 @@ public:
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 			const Tizen::Ui::Scenes::SceneId& nextSceneId);
 	//IIconListViewItemEventListener
-	virtual void OnIconListViewItemStateChanged(Tizen::Ui::Controls::IconListView& iconListView, int index, Tizen::Ui::Controls::IconListViewItemStatus status);
-	virtual void OnIconListViewOverlayBitmapSelected(Tizen::Ui::Controls::IconListView& iconListView, int index, int overlayBitmapId);
-	virtual void OnIconListViewItemReordered(Tizen::Ui::Controls::IconListView&  iconListView, int indexFrom, int indexTo);
+	virtual void OnListViewContextItemStateChanged(Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListContextItemStatus state);
+	virtual void OnListViewItemStateChanged(Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListItemStatus status);
+	virtual void OnListViewItemSwept(Tizen::Ui::Controls::ListView &listView, int index, Tizen::Ui::Controls::SweepDirection direction);
 
 	//IIconListViewItemProvider
 	virtual int GetItemCount(void);
-	virtual Tizen::Ui::Controls::IconListViewItem* CreateItem(int index);
-	virtual bool DeleteItem(int index, Tizen::Ui::Controls::IconListViewItem* pItem);
+	virtual Tizen::Ui::Controls::ListItemBase* CreateItem(int index, int itemWidth);
+	virtual bool DeleteItem(int index, Tizen::Ui::Controls::ListItemBase* pItem, int itemWidth);
 
 
 protected:
@@ -61,10 +61,10 @@ protected:
 private:
 	result SearhPhotoStory(void);
 	void initResultList(void);
-	String GetContentFileName(int index) const;
+	Tizen::Base::String GetContentFileName(int index) const;
 
 private:
-	Tizen::Ui::Controls::IconListView* __pPhotoStoryListView;
+	Tizen::Ui::Controls::ListView* __pPhotoStoryListView;
 	Tizen::Base::Collection::IList* __pSearchResultList;
 	Tizen::Content::ContentType __contentType;
 };
